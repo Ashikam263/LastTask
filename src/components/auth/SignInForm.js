@@ -40,7 +40,7 @@ export default function SignIn() {
   });
 
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = React.useState({
     email: '',
     password: '',
   });
@@ -59,9 +59,9 @@ export default function SignIn() {
     try {
       const response = await axiosInstance.post('/auth/login', formData);
       if (response.status === 200) {
-        console.log('Sign in successful!');
-        localStorage.setItem('token', response.data.access_token);
+        console.log('Sign in successful!'); 
         toast.success('Sign in successful!', { autoClose: 1000 });
+        console.log('Navigating to /nextpage');
         navigate('/nextpage');
       } else {
         console.log('Sign in failed.');
@@ -83,7 +83,7 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
