@@ -59,9 +59,11 @@ export default function SignIn() {
     try {
       const response = await axiosInstance.post('/auth/login', formData);
       if (response.status === 200) {
-        console.log('Sign in successful!'); 
+        const { access_token, refresh_token } = response.data;
+        localStorage.setItem('access_token', access_token);
+        localStorage.setItem('refresh_token', refresh_token);
+        console.log('Sign in successful!');
         toast.success('Sign in successful!', { autoClose: 1000 });
-        console.log('Navigating to /nextpage');
         navigate('/nextpage');
       } else {
         console.log('Sign in failed.');
