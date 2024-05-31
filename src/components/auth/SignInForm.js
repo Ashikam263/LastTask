@@ -16,7 +16,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+// import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 
 function Copyright(props) {
   return (
@@ -34,13 +35,9 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const baseURL = 'http://localhost:8000/api/';
-  const axiosInstance = axios.create({
-    baseURL: baseURL,
-  });
-
   const navigate = useNavigate();
-  const [formData, setFormData] = React.useState({
+  const { signin } = useAuth();
+  const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
@@ -57,27 +54,18 @@ export default function SignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axiosInstance.post('/auth/login', formData);
-      if (response.status === 200) {
-        const { access_token, refresh_token } = response.data;
-        localStorage.setItem('access_token', access_token);
-        localStorage.setItem('refresh_token', refresh_token);
-        console.log('Sign in successful!');
-        toast.success('Sign in successful!', { autoClose: 1000 });
-        navigate('/nextpage');
-      } else {
-        console.log('Sign in failed.');
-        toast.error('Sign in failed. Please check your credentials.', { autoClose: 1000 });
-        setError('Sign in failed. Please check your credentials.');
-      }
+      await signin(formData);
+      console.log('Sign in successful!');
+      toast.success('Sign in successful!', { autoClose: 1000 });
+      navigate('/nextpage');
     } catch (error) {
       console.error('Error signing in:', error.message);
+      console.log('Sign in error details:', error);
       toast.error('An error occurred while signing in. Please try again later.', { autoClose: 1000 });
       setError('An error occurred while signing in. Please try again later.');
     }
   };
   
-
 
   return (
     <ThemeProvider theme={defaultTheme}>

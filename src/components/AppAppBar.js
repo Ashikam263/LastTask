@@ -14,6 +14,14 @@ const logoStyle = {
 };
 
 function AppAppBar({ mode, toggleColorMode }) {
+
+  const [isSignedIn, setIsSignedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    setIsSignedIn(!!token);
+  }, []);
+
   return (
     <AppBar
       position="fixed"
@@ -70,26 +78,29 @@ function AppAppBar({ mode, toggleColorMode }) {
             }}
           >
             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-            <Button
-              color="primary"
-              variant="text"
-              size="small"
-              component="a"
-              href="/signin"
-              // target="_blank"
-            >
-              Sign in
-            </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              size="small"
-              component="a"
-              href="/signup"
-              // target="_blank"
-            >
-              Sign up
-            </Button>
+            {!isSignedIn && (
+              <>
+                <Button
+                  color="primary"
+                  variant="text"
+                  size="small"
+                  component="a"
+                  href="/signin"
+                >
+                  Sign in
+                </Button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  size="small"
+                  component="a"
+                  href="/signup"
+                >
+                  Sign up
+                </Button>
+              </>
+            )}
+
           </Box>
         </Toolbar>
       </Container>
