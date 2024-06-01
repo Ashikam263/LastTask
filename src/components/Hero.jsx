@@ -1,4 +1,4 @@
-import * as React from 'react';
+// import * as React from 'react';
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -60,7 +60,7 @@ export default function Hero() {
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-            We're building a future-proof network, that’ll help you and your business grow without worrying about those ever-changing requirements
+            We are building a future-proof network, that’ll help you and your business grow without worrying about those ever-changing requirements
           </Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}

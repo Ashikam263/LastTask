@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useState} from 'react';
+import { createContext, useState} from 'react';
 import authService from '../services/authService'
 
 export const AuthContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
@@ -43,4 +44,4 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
-export const useAuth = () => useContext(AuthContext);
+
