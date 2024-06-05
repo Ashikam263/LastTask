@@ -1,29 +1,3 @@
-// import React from 'react';
-// import { Navigate } from 'react-router-dom';
-
-// const NextPage = () => {
-//     // Check if the user is logged in
-//     const isLoggedIn = !!localStorage.getItem('token');
-//     console.log('IsLoggedIn:', isLoggedIn);
-
-//     // If the user is not logged in, redirect to the sign-in page
-//     if (!isLoggedIn) {
-//         console.log('Redirecting to signin page...');
-//         return <Navigate to="/signin" />;
-//     }
-
-//     // If the user is logged in, render the NextPage content
-//     return (
-//         <div>
-//             <h1>This is the Next Page</h1>
-//             <p>Welcome to the Next Page!</p>
-//         </div>
-//     );
-// };
-
-// export default NextPage;
-
-
 import * as React from 'react';
 // import PropTypes from 'prop-types';
 import Toolbar from '@mui/material/Toolbar';
@@ -53,11 +27,12 @@ const NextPage = () => {
       try {
         const token = localStorage.getItem('token');
         const response = await axiosInstance.get('/users', {
-          headers: { Authorization: `Bearer ${token}` } // Include the token in the request headers
+          headers: { Authorization: `Bearer ${token}` } 
         });
-        setUsers(response.data);
+        setUsers(response.data.data);
       } catch (error) {
         console.error('Error fetching users:', error);
+        toast.error('Failed to fetch users. Please try again later.', { autoClose: 1000 });
       }
     };
 
