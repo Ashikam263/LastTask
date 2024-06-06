@@ -54,10 +54,13 @@ export default function SignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await signin(formData);
+      const token = await signin(formData);
       console.log('Sign in successful!');
       toast.success('Sign in successful!', { autoClose: 1000 });
-      navigate('/nextpage');
+      
+      localStorage.setItem('token', token);
+  
+      navigate('/');
     } catch (error) {
       console.error('Error signing in:', error.message);
       console.log('Sign in error details:', error);
@@ -65,6 +68,7 @@ export default function SignIn() {
       setError('An error occurred while signing in. Please try again later.');
     }
   };
+  
   
 
   return (

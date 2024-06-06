@@ -38,15 +38,21 @@ const authService = {
       throw new Error('Refresh token failed');
     }
   },
+  // Modify this function to include the token in the headers
   // getCurrentUser: async () => {
   //   try {
-  //     const response = await axios.get(`${API_URL}/user`, { withCredentials: true });
+  //     const token = localStorage.getItem('token');
+  //     const response = await axios.get(`${API_URL}/user`, {
+  //       withCredentials: true,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+  //       },
+  //     });
   //     return response.data;
   //   } catch (error) {
   //     throw new Error('Failed to fetch current user');
   //   }
-  // }
+  // },
 };
-
 
 export default authService;

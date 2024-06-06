@@ -24,14 +24,7 @@ const App = () => {
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/signin" element={<SignInPage />} />
-                    <Route
-                    path="/nextpage"
-                    element={
-                        
-                            <NextPage />
-                        
-                    }
-                    />
+                    <Route path="/nextpage" element={<NextPage />} />
                 </Routes>
             </Router>
             <ToastContainer autoClose={1000}/>

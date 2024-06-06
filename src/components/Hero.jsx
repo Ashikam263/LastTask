@@ -81,7 +81,7 @@ export default function Hero() {
                 'aria-label': 'Enter your email address',
               }}
             />
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" href='/nextpage'>
               Start now
             </Button>
           </Stack>
